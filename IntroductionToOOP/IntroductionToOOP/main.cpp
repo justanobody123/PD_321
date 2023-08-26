@@ -1,5 +1,8 @@
 ﻿#include<iostream>
 using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
 //Описание структуры
 class Point
@@ -23,9 +26,107 @@ public:
 	{
 		this->y = y;
 	}
+
+	//					Constructors:
+	/*Point()
+	{
+		x = y = double();
+		cout << "DefaultConstructor:\t" << this << endl;
+	}
+	Point(double x)
+	{
+		this->x = x;
+		this->y = double();
+		cout << "1ArgConstructor:\t" << this << endl;
+	}*/
+
+	Point(double x = 0, double y = 0)
+	{
+		this->x = x;
+		this->y = y;
+		cout << "Constructor:\t" << this << endl;
+	}
+	//Deep copy - побитовое копирование
+	Point(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyConstructor:" << this << endl;
+	}
+	~Point()
+	{
+		cout << "Destructor:\t" << this << endl;
+	}
+
+	//					Assignment operator:
+	Point operator=(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyAssignment:\t" << this << endl;
+		return *this;
+	}
+	Point operator+=(const Point& other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+		return *this;
+	}
+
+	//				Increment/Decrement:
+	Point operator++()	//Prefix increment
+	{
+		x++;
+		y++;
+		return *this;
+	}
+	Point operator++(int)
+	{
+		Point old = *this;
+		x++;
+		y++;
+		return old;
+	}
+
+	Point operator()(double x, double y)
+	{
+		set_x(x);
+		set_y(y);
+		return *this;
+	}
+
+	//					Methods:
+	void print()const
+	{
+		cout << "X = " << x << "\tY = " << y << endl;
+	}
 };
 
+Point operator+(const Point& left, const Point& right)
+{
+	Point result;
+	result.set_x(left.get_x() + right.get_x());
+	result.set_y(left.get_y() + right.get_y());
+	return result;
+}
+
+bool operator==(const Point& left, const Point& right)
+{
+	return left.get_x() == right.get_x() && left.get_y() == right.get_y();
+	/*if (left.get_x() == right.get_x() && left.get_y() == right.get_y())
+		return true;
+	else
+		return false;*/
+}
+
+std::ostream& operator<<(std::ostream& os, const Point& obj)
+{
+	return os << "X = " << obj.get_x() << "\tY = " << obj.get_y();
+}
+
 //#define STRUCT_POINT
+//#define CONSTRUCTORS_CHECK
+//#define ASSIGNMENT_CHECK
 
 void main()
 {
@@ -44,10 +145,60 @@ void main()
 	cout << pA->x << "\t" << pA->y << endl;
 #endif // STRICT_POINT
 
-	Point A;
-	A.set_x(2);
-	A.set_y(3);
-	cout << A.get_x() << "\t" << A.get_y() << endl;
+#ifdef CONSTRUCTORS_CHECK
+	Point A;		//Default constructor
+//A.set_x(2);
+//A.set_y(3);
+//cout << A.get_x() << "\t" << A.get_y() << endl;
+	A.print();
+
+	Point B = 5;	//Single-argument constructor
+	B.print();
+
+	Point C(2, 3);
+	C.print();
+
+	Point D = C;	//Copy constructor
+	D.print();
+
+	Point E;
+	E = D;			//Copy assignment
+	E.print();
+#endif // CONSTRUCTORS_CHECK
+
+#ifdef ASSIGNMENT_CHECK
+	int a, b, c;
+	a = b = c = 0;
+	cout << a << "\t" << b << "\t" << c << endl;
+
+	Point A, B, C;
+	A = B = C = Point(4, 5);
+#endif // ASSIGNMENT_CHECK
+
+	Point A(2, 3);
+	A.print();
+
+	Point B(7, 8);
+	B.print();
+
+	Point C = A + B;
+	C.print();
+
+	A += B;
+	A.print();
+
+	B = ++A;
+	A.print();
+	B.print();
+
+	cout << (A == B) << endl;
+
+	cout << A << endl;
+
+	/*A.set_x(33);
+	A.set_y(44);*/
+	A(33, 44);
+	A.print();
 }
 
 /*
@@ -68,5 +219,39 @@ void main()
 	set-методы (задать, установить)
 2. Inheritance;
 3. Polymorphism;
+-------------------------------------------------------------
+*/
+
+/*
+-------------------------------------------------------------
+Constructor - это метод, который создает объект;
+	с параметрами;
+	без параметров;
+	коструктор по умолчанию - это конструктор, который может быть вызван без параметров;
+	конструктор копирования;
+	контруктор переноса;
+
+~Destructor - это метод, который удаляет объект по завершении его времени жизни;
+Assignment operator
+-------------------------------------------------------------
+*/
+
+/*
+-------------------------------------------------------------
+1. Перегрузить можно только существующие операторы.
+	+  - перегружается;
+	++ - перегружается;
+	*  - перегружается;
+	** - НЕ перегружается;
+2. Не все существующие операторы можно перегрузить.
+   Не перегружаются:
+	?: - conditional ternary operator;
+	:: - оператор разрешения видимости (scope operator);
+	.  - оператор прямого доступа (point operator);
+	.* - Pointer to member selection;
+	#  - Preprocessor directive;
+	## - Preprocessor string concatenation;
+3. Перегруженные операторы сохраняют приоритет;
+4. Переопределить поведение операторов над встроенными типами невозможно;
 -------------------------------------------------------------
 */
