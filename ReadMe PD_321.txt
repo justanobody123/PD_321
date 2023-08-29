@@ -2,9 +2,6 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
-Для класса 'Fraction' перегрузить арифметические операции и составные присваивания (+=, -=, *=, /=).
-
-DONE:
 В Solution 'IntroductionToOOP' добавить проект 'Fraction', и в нем реализовать класс 'Fraction',
 описывающий простую дробь. В классе должны быть все необходимые методы и операторы;
 

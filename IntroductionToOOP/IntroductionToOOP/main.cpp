@@ -4,6 +4,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#define delimiter "\n-------------------------------------------------------------------\n"
+
 //Описание структуры
 class Point
 {
@@ -59,7 +61,7 @@ public:
 	}
 
 	//					Assignment operator:
-	Point operator=(const Point& other)
+	Point& operator=(const Point& other)
 	{
 		this->x = other.x;
 		this->y = other.y;
@@ -96,11 +98,29 @@ public:
 	}
 
 	//					Methods:
+	double distance(const Point& other)
+	{
+		//this  - A
+		//other - B
+		double x_distance = this->x - other.x;
+		double y_distance = this->y - other.y;
+		double distance = sqrt(x_distance*x_distance + y_distance * y_distance);
+		return distance;
+	}
 	void print()const
 	{
 		cout << "X = " << x << "\tY = " << y << endl;
 	}
 };
+
+double distance(const Point& A, const Point& B)
+{
+	return sqrt(pow(A.get_x() - B.get_x(), 2) + pow(A.get_y() - B.get_y(), 2));
+	/*double x_distance = A.get_x() - B.get_x();
+	double y_distance = A.get_y() - B.get_y();
+	double distance = sqrt(x_distance*x_distance + y_distance * y_distance);
+	return distance;*/
+}
 
 Point operator+(const Point& left, const Point& right)
 {
@@ -126,7 +146,9 @@ std::ostream& operator<<(std::ostream& os, const Point& obj)
 
 //#define STRUCT_POINT
 //#define CONSTRUCTORS_CHECK
-//#define ASSIGNMENT_CHECK
+//#define DISTANCE_CHECK
+#define ASSIGNMENT_CHECK
+//#define OPERATORS_CHECK
 
 void main()
 {
@@ -166,15 +188,33 @@ void main()
 	E.print();
 #endif // CONSTRUCTORS_CHECK
 
+#ifdef DISTANCE_CHECK
+	Point A(2, 3);
+	Point B(7, 8);
+	cout << delimiter << endl;
+	cout << "Расстояние от точки 'A' до точки 'B': " << A.distance(B) << endl;
+	cout << delimiter << endl;
+	cout << "Расстояние от точки 'B' до точки 'A': " << B.distance(A) << endl;
+	cout << delimiter << endl;
+	cout << "Расстояние между точками 'A' и 'B':   " << distance(A, B) << endl;
+	cout << delimiter << endl;
+	cout << "Расстояние между точками 'B' и 'A':   " << distance(B, A) << endl;
+	cout << delimiter << endl;
+#endif // DISTANCE_CHECK
+
+
 #ifdef ASSIGNMENT_CHECK
 	int a, b, c;
 	a = b = c = 0;
 	cout << a << "\t" << b << "\t" << c << endl;
 
 	Point A, B, C;
+	cout << delimiter << endl;
 	A = B = C = Point(4, 5);
+	cout << delimiter << endl;
 #endif // ASSIGNMENT_CHECK
 
+#ifdef OPERATORS_CHECK
 	Point A(2, 3);
 	A.print();
 
@@ -199,6 +239,8 @@ void main()
 	A.set_y(44);*/
 	A(33, 44);
 	A.print();
+#endif // OPERATORS_CHECK
+
 }
 
 /*
