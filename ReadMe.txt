@@ -4,6 +4,8 @@ https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_
 TODO:
 1. Проверочный код в секции 'CONVERSIONS_HOME_WORK' должен заработать:
 	https://github.com/okovtun/PD_321/blob/621e5b53af424a77de56f2b030277a46bf091a7c/IntroductionToOOP/Fraction/main.cpp#L398
+2. Проверочный код в секции 'OPERATOR_PLUS_CHECK' должен заработать:
+	https://github.com/okovtun/PD_321/blob/1a08a1f048211c5f9c6b3ec9f1fb3990d1a3c2f4/IntroductionToOOP/String/main.cpp#L94C2-L94C2
 
 DONE:
 0. Догрузить все недостающие операторы;
