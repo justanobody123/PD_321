@@ -46,12 +46,12 @@ public:
 		this->denominator = 1;
 		cout << "DefaultConstruct:\t" << this << endl;
 	}
-	Fraction(int integer)
+	explicit Fraction(int integer)
 	{
 		this->integer = integer;
 		this->numerator = 0;
 		this->denominator = 1;
-		cout << "1ArgConstructor:\t" << this << endl;
+		cout << "1ArgConstructor:" << this << endl;
 	}
 	Fraction(int numerator, int denominator)
 	{
@@ -107,6 +107,16 @@ public:
 		Fraction old = *this;
 		integer++;
 		return old;
+	}
+
+	//					Type-cast operators:
+	explicit operator int()
+	{
+		return to_proper().integer;
+	}
+	operator double()
+	{
+		return integer + (double)numerator / denominator;
 	}
 
 	//					Methos:
@@ -175,7 +185,7 @@ Fraction operator*(Fraction left, Fraction right)
 	return result;*/
 	return Fraction
 	(
-		left.get_numerator()*right.get_numerator(), 
+		left.get_numerator()*right.get_numerator(),
 		left.get_denominator()*right.get_denominator()
 	).to_proper().reduce();
 	//В этом выражении явно вызывается конеструктор, и создается временный безымянный объект.
@@ -276,6 +286,11 @@ std::istream& operator>>(std::istream& is, Fraction& obj)
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define INCREMENT_CHECK
 
+//#define TYPE_CONVERSIONS_BASICS
+//#define CONVERSIONS_FROM_OTHER_TO_CLASS
+//#define CONVERSIONS_FROM_CLASS_TO_OTHER
+#define CONVERSIONS_HOME_WORK
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -333,7 +348,67 @@ void main()
 	//cout << (2 == 3) << endl;
 	//cout << (Fraction(1, 2) >= Fraction(5, 10)) << endl;
 
-	Fraction A;
+	/*Fraction A;
 	cout << "Введите простую дробь: "; cin >> A;
+	cout << A << endl;*/
+
+	//(type)value;	//C-like notation
+	//type(value);	//Functional notation
+
+#ifdef TYPE_CONVERSIONS_BASICS
+	int a = 2;		//No conversions
+	double b = 3;	//Conversion from less to more
+	int c = b;		//Conversion from more to less without data loss
+	int d = 3.14;	//Conversion from more to less with data loss
+
+	cout << 7 / 2. << endl;
+#endif // TYPE_CONVERSIONS_BASICS
+
+	/*
+	-------------------------------------------
+	1. From other to Class;
+		Single-agrument constructor;
+		Assignment operator;
+	2. From Class to other;
+		type-cast operators
+	-------------------------------------------
+	*/
+
+#ifdef CONVERSIONS_FROM_OTHER_TO_CLASS
+	Fraction A = (Fraction)5;		//Conversion from 'int' to 'Fraction'
 	cout << A << endl;
+
+	Fraction B;
+	B = Fraction(8);
+	cout << B << endl;
+#endif // CONVERSIONS_FROM_OTHER_TO_CLASS
+
+#ifdef CONVERSIONS_FROM_CLASS_TO_OTHER
+	Fraction A(52, 10);
+	cout << A << endl;
+	int a = (int)A;
+	cout << a << endl;
+
+	Fraction B(2, 3, 4);
+	cout << B << endl;
+	double b = B;
+	cout << b << endl;
+#endif // CONVERSIONS_FROM_CLASS_TO_OTHER
+
+#ifdef CONVERSIONS_HOME_WORK
+	Fraction A = 2.75;
+	cout << A << endl;
+#endif // CONVERSIONS_HOME_WORK
+
 }
+
+/*
+--------------------------------
+operator type()
+{
+	........
+	conversion code;
+	........
+}
+--------------------------------
+*/
