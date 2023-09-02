@@ -2,7 +2,8 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
-1. 
+1. Проверочный код в секции 'CONVERSIONS_HOME_WORK' должен заработать:
+	https://github.com/okovtun/PD_321/blob/621e5b53af424a77de56f2b030277a46bf091a7c/IntroductionToOOP/Fraction/main.cpp#L398
 
 DONE:
 0. Догрузить все недостающие операторы;
