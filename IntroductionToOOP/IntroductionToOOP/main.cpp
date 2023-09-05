@@ -92,7 +92,7 @@ public:
 
 	Point operator()(double x, double y)
 	{
-		set_x(x);
+		this->set_x(x);
 		set_y(y);
 		return *this;
 	}
@@ -147,8 +147,8 @@ std::ostream& operator<<(std::ostream& os, const Point& obj)
 //#define STRUCT_POINT
 //#define CONSTRUCTORS_CHECK
 //#define DISTANCE_CHECK
-#define ASSIGNMENT_CHECK
-//#define OPERATORS_CHECK
+//#define ASSIGNMENT_CHECK
+#define OPERATORS_CHECK
 
 void main()
 {
@@ -201,7 +201,6 @@ void main()
 	cout << "Расстояние между точками 'B' и 'A':   " << distance(B, A) << endl;
 	cout << delimiter << endl;
 #endif // DISTANCE_CHECK
-
 
 #ifdef ASSIGNMENT_CHECK
 	int a, b, c;

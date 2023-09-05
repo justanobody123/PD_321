@@ -66,6 +66,16 @@ public:
 		set_denominator(denominator);
 		cout << "Constructor:\t" << this << endl;
 	}
+	Fraction(double decimal)
+	{
+		decimal += 1e-10;
+		integer = decimal;
+		decimal -= integer;
+		denominator = 1e+9;
+		numerator = decimal * denominator;
+		reduce();
+		cout << "doubleConstructor:" << this << endl;
+	}
 	Fraction(const Fraction& other)
 	{
 		this->integer = other.integer;
