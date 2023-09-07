@@ -1,6 +1,8 @@
-#include<iostream>
+﻿#include<iostream>
 using namespace std;
-
+using std::cin;
+using std::cout;
+using std::endl;
 
 #define delimiter "\n-----------------------------\n"
 
@@ -9,8 +11,8 @@ String operator+(const String& left, const String& right);
 
 class String
 {
-	int size;		//������ ������ � ������
-	char* str;	//����� ������ � ������������ ������
+	int size;		//размер строки в Байтах
+	char* str;	//адрес строки в динамической памяти
 public:
 	int get_size()const
 	{
@@ -25,10 +27,10 @@ public:
 		return str;
 	}
 	//		Constructors:
-	explicit String(int size = 80)
+	explicit String(int size = 80) :size(size), str(new char[size] {})
 	{
-		this->size = size;
-		this->str = new char[size] {};
+		//this->size = size;
+		//this->str = new char[size] {};
 		cout << "DefaultConstruct:\t" << this << endl;
 	}
 	String(String&& other)
@@ -115,7 +117,7 @@ String operator+(const String& left, const String& right)
 }
 
 //#define CONSTRUCTOR_CHECK
-#define OPERATOR_PLUS_CHECK
+//#define OPERATOR_PLUS_CHECK
 
 void main()
 {
@@ -135,6 +137,7 @@ void main()
 	str3 = str2; //copy assigment
 	cout << str3 << endl;
 #endif //CONSTRUCTOR_CHEK
+
 #ifdef OPERATOR_PLUS_CHECK
 	String str1 = "Hello";
 	String str2 = "World";
@@ -148,4 +151,33 @@ void main()
 	str1 += str2;
 	cout << str1 << endl;
 #endif //OPERATOR_PLUS_CHECK
+
+	String str1;	//Default constructor
+	str1.print();
+
+	String str2(5);	//Single-Argument Constructor
+	str2.print();
+
+	String str3 = "Hello";	//Single-Argument constructor
+	str3.print();
+
+	String str4();	//Здесь не создается никакой объект, здесь объявляется функция 'str4()',
+					//которая ничего не принимает, и возвращает объект класса 'String';
+	//str4.print();
+
+	String str5{};	//Явно вызывается конструктор по умолчанию
+	str5.print();
+
+	String str6("World");
+	str6.print();
+
+	String str7{ "Compile" };
+	str7.print();
+
+	String str8 = str3;	//Copy constructor
+	str8.print();
+
+	String str9;
+	str9 = str6;
+	str9.print();
 }

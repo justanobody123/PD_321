@@ -25,32 +25,32 @@ public:
 	}
 
 	//				Constructors:
-	explicit String(int size = 80)
+	explicit String(int size = 80) :size(size), str(new char[size] {})
 	{
-		this->size = size;
-		this->str = new char[size] {};
+		//this->size = size;
+		//this->str = new char[size] {};
 		cout << "DefaultConstruct:" << this << endl;
 	}
-	String(const char* str)
+	String(const char* str) :size(strlen(str) + 1), str(new char[size] {})
 	{
-		this->size = strlen(str) + 1;
-		this->str = new char[size] {};
+		//this->size = strlen(str) + 1;
+		//this->str = new char[size] {};
 		for (int i = 0; str[i]; i++)this->str[i] = str[i];
 		cout << "Constructor:\t" << this << endl;
 	}
-	String(const String& other)
+	String(const String& other) :size(other.size), str(new char[size] {})
 	{
 		//Deep copy
-		this->size = other.size;
-		this->str = new char[size] {};
+		//this->size = other.size;
+		//this->str = new char[size] {};
 		for (int i = 0; i < size; i++)this->str[i] = other.str[i];
 		cout << "CopyConstructor:" << this << endl;
 	}
-	String(String&& other)
+	String(String&& other):size(other.size), str(other.str)
 	{
 		//Shallow copy
-		this->size = other.size;
-		this->str = other.str;
+		//this->size = other.size;
+		//this->str = other.str;
 		other.size = 0;
 		other.str = nullptr;
 		cout << "MoveConstructor:" << this << endl;
@@ -118,7 +118,7 @@ String operator+(const String& left, const String& right)
 }
 
 //#define CONSTRUCTORS_CHECK
-#define OPERATOR_PLUS_CHECK
+//#define OPERATOR_PLUS_CHECK
 
 void main()
 {
@@ -168,6 +168,35 @@ void main()
 	cout << str3 << endl;
 #endif // OPERATOR_PLUS_CHECK
 
+
+	String str1;	//Default constructor
+	str1.print();
+
+	String str2(5);	//Single-Argument Constructor
+	str2.print();
+
+	String str3 = "Hello";	//Single-Argument constructor
+	str3.print();
+
+	String str4();	//Здесь не создается никакой объект, здесь объявляется функция 'str4()',
+					//которая ничего не принимает, и возвращает объект класса 'String';
+	//str4.print();
+
+	String str5{};	//Явно вызывается конструктор по умолчанию
+	str5.print();
+
+	String str6("World");
+	str6.print();
+
+	String str7{ "Compile" };
+	str7.print();
+
+	String str8 = str3;	//Copy constructor
+	str8.print();
+
+	String str9;
+	str9 = str6;
+	str9.print();
 }
 
 /*
