@@ -2,6 +2,13 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
+1. Из файла '201 RAW.txt' создать файл '201 ready.txt', и в этом файле 
+   столбики с IP и MAC адресом должны быть поменяны местами.
+	https://github.com/okovtun/PD_321/blob/master/Inheritance/Files/Files/201%20RAW.txt
+2. На основании файла '201 RAW.txt' создать файл вида '201.dhcpd':
+	https://github.com/okovtun/PD_321/blob/master/Inheritance/Files/Files/201.dhcpd
+
+DONE:
 Создать ветку 'AcademySeparated', и в этой ветке вынести отдельные классы в отдельные файлы;
 
 DONE:
