@@ -126,6 +126,15 @@ public:
 		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
 	}
 };
+std::ostream& operator<<(std::ostream& os, const Student& obj)
+{
+	return os << (Human&)obj
+		<< obj.get_speciality() << " " 
+		<< obj.get_group() << " " 
+		<< obj.get_rating() << " " 
+		<< obj.get_attendance();
+}
+
 #define TEACHER_TAKE_PARAMETERS const std::string& speciality, int experience
 #define TEACHER_GIVE_PARAMETERS speciality, experience
 class Teacher :public Human
@@ -162,6 +171,10 @@ public:
 		cout << speciality << " " << experience << " years\n";
 	}
 };
+std::ostream& operator<<(std::ostream& os, const Teacher& obj)
+{
+	return os << (Human&)obj << " " << obj.get_speciality() << " " << obj.get_experience() << " лет";
+}
 
 class Graduate :public Student
 {
@@ -192,6 +205,10 @@ public:
 		cout << subject << endl;
 	}
 };
+std::ostream& operator<<(std::ostream& os, const Graduate& obj)
+{
+	return os << (Student&)obj << " " << obj.get_subject();
+}
 
 void print(Human* group[], const int n);
 void save(Human* group[], const int n, const char sz_filename[]);
@@ -243,7 +260,10 @@ void print(Human* group[], const int n)
 	for (int i = 0; i < n; i++)
 	{
 		//group[i]->print();
-		cout << *group[i] << endl;
+		cout << typeid(*group[i]).name() << endl;
+		if(typeid(*group[i]) == typeid(Student))cout << *dynamic_cast<Student*>(group[i]) << endl;
+		if(typeid(*group[i]) == typeid(Graduate))cout << *dynamic_cast<Graduate*>(group[i]) << endl;
+		if(typeid(*group[i]) == typeid(Teacher))cout << *dynamic_cast<Teacher*>(group[i]) << endl;
 		cout << delimiter << endl;
 	}
 }
