@@ -7,6 +7,8 @@ TODO:
 	https://github.com/okovtun/PD_321/blob/master/Inheritance/Files/Files/201%20RAW.txt
 2. На основании файла '201 RAW.txt' создать файл вида '201.dhcpd':
 	https://github.com/okovtun/PD_321/blob/master/Inheritance/Files/Files/201.dhcpd
+3. Дописать функцию void save(....), которая сохраняет группу в файл;
+4. Написать функцию ??? load(???), которая загружает группу из файла в массив объектов;
 
 DONE:
 Создать ветку 'AcademySeparated', и в этой ветке вынести отдельные классы в отдельные файлы;
