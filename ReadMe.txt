@@ -2,6 +2,11 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
+Реализовать иерархию геометрических фигур: Круг, Прямоугольник, Квадрат, треугольник....
+Для каждой фигуры нкжно вывести ее первичные свойства, например, дина стороны квадрата, радиус круга и т.д.,
+и вторичные свойства: площадь, периметр. Так же каждую фигуру нужно нарисовать.
+
+DONE:
 1. Из файла '201 RAW.txt' создать файл '201 ready.txt', и в этом файле	DONE
    столбики с IP и MAC адресом должны быть поменяны местами.
 	https://github.com/okovtun/PD_321/blob/master/Inheritance/Files/Files/201%20RAW.txt
