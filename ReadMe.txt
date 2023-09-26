@@ -2,6 +2,13 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
+В 'ForwardList' добавить следующие методы:
+	??? pop_front(???);
+	??? pop_back(???);
+	??? insert(???);
+	??? erase(???);
+
+DONE:
 1. Добавить фильтрацию данных в дочерние классы;							DONE
 2. Написать метод info(), который автоматизирует вывод информации о фигуре;	DONE
 3. Добавить в иерархию фигур круг и треугольник;							DONE
