@@ -2,16 +2,11 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
-1. В 'ForwardList' добавить следующие методы:
-	??? pop_front(???);	DONE
-	??? pop_back(???);	DONE
-	??? insert(???);	DONE
+В 'ForwardList' добавить следующие методы:
+	??? pop_front(???);
+	??? pop_back(???);
+	??? insert(???);
 	??? erase(???);
-2. Оптимизировать методы добавления элементов;				DONE
-3. Деструктор списка должен удалять все элементы списка;	DONE
-4. Написать CopyMethods: CopyConstructor, CopyAssignment;
-5. Написать MoveMethods: MoveConstructor, MoveAssignment;
-6.
 
 DONE:
 1. Добавить фильтрацию данных в дочерние классы;							DONE
