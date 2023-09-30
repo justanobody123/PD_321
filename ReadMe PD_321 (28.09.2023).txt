@@ -6,13 +6,12 @@ TODO:
 	??? pop_front(???);	DONE
 	??? pop_back(???);	DONE
 	??? insert(???);	DONE
-	??? erase(???);		DONE
+	??? erase(???);
 2. Оптимизировать методы добавления элементов;				DONE
 3. Деструктор списка должен удалять все элементы списка;	DONE
 4. Написать CopyMethods: CopyConstructor, CopyAssignment;
 5. Написать MoveMethods: MoveConstructor, MoveAssignment;
-6. Написать operator+(), который выполняет конкатенацию списков;
-7. Проверочный код в секции 'RANGE_BASED_FOR_LIST' должен заработать:	DONE
+6. Проверочный код в секции 'RANGE_BASED_FOR_LIST' должен заработать:
 	https://github.com/okovtun/PD_321/blob/6fcb1bda970639a5ea5d086ac2e96a1144d11822/DataContainers/ForwardList/main.cpp#L189C1-L189C1
 
 DONE:
