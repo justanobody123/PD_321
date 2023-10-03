@@ -2,6 +2,9 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
+Реализовать двусвязный список.
+
+DONE:
 1. В 'ForwardList' добавить следующие методы:
 	??? pop_front(???);	DONE
 	??? pop_back(???);	DONE
@@ -9,11 +12,13 @@ TODO:
 	??? erase(???);		DONE
 2. Оптимизировать методы добавления элементов;				DONE
 3. Деструктор списка должен удалять все элементы списка;	DONE
-4. Написать CopyMethods: CopyConstructor, CopyAssignment;
-5. Написать MoveMethods: MoveConstructor, MoveAssignment;
-6. Написать operator+(), который выполняет конкатенацию списков;
+4. Написать CopyMethods: CopyConstructor, CopyAssignment;	DONE
+5. Написать MoveMethods: MoveConstructor, MoveAssignment;	DOME
+6. Написать operator+(), который выполняет конкатенацию списков;		DONE
 7. Проверочный код в секции 'RANGE_BASED_FOR_LIST' должен заработать:	DONE
 	https://github.com/okovtun/PD_321/blob/6fcb1bda970639a5ea5d086ac2e96a1144d11822/DataContainers/ForwardList/main.cpp#L189C1-L189C1
+8. Написать метод ??? reverse(???), который меняет порядок следования элементов списка на противоположный,
+   и применить этот метод в других методах для оптимизации производительности списка;	DONE
 
 DONE:
 1. Добавить фильтрацию данных в дочерние классы;							DONE
