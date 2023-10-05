@@ -2,7 +2,7 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
-В двусвязный список добавить методы pop_back(), insert() и erase();
+Реализовать двусвязный список.
 
 DONE:
 1. В 'ForwardList' добавить следующие методы:
