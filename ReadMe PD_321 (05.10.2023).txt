@@ -2,10 +2,7 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
-Запретить изменение элементов списка 'right' в операторе '+';
-
-DONE:
-В двусвязный список добавить методы pop_back(), insert() и erase();	DONE
+В двусвязный список добавить методы pop_back(), insert() и erase();
 
 DONE:
 1. В 'ForwardList' добавить следующие методы:
