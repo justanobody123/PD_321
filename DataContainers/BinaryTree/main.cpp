@@ -96,7 +96,11 @@ public:
 	}
 	void tree_print()const
 	{
-		tree_print(0, this->depth()*8);
+		tree_print(0, this->depth() * 8);
+	}
+	void balance()
+	{
+		balance(this->Root);
 	}
 	void print()const
 	{
@@ -198,11 +202,16 @@ private:
 	}
 	void depth_print(Element* Root, int depth, int width = 8)const
 	{
-		if (Root == nullptr)return;
+		if (Root == nullptr)
+		{
+			cout.width(width * 2); cout << "";
+			return;
+		}
 		if (depth == 0)
 		{
 			cout.width(width);
-			cout << Root->Data << tab;
+			cout << Root->Data;
+			//cout.width(width);	cout << "";
 			return;
 		}
 		depth_print(Root->pLeft, depth - 1, width);
@@ -211,12 +220,41 @@ private:
 	}
 	void tree_print(int depth, int width)const
 	{
-		if (depth == this->depth())return;
+		if (depth == this->depth())
+		{
+			//cout.width(width*2);cout << "";
+			return;
+		}
 		depth_print(this->Root, depth, width);
 		cout << endl;
 		cout << endl;
 		cout << endl;
-		tree_print(depth + 1, width/2);
+		cout << endl;
+		cout << endl;
+		tree_print(depth + 1, width / 2);
+	}
+	void balance(Element* Root)
+	{
+		if (Root == nullptr)return;
+		if (abs(count(Root->pLeft) - count(Root->pRight) < 2))return;
+
+		if (count(Root->pLeft) > count(Root->pRight))
+		{
+			if (Root->pRight == nullptr)Root->pRight = new Element(Root->Data);
+			else insert(Root->Data, Root->pRight);
+			Root->Data = maxValue(Root->pLeft);
+			erase(maxValue(Root->pLeft), Root->pLeft);
+		}
+		else
+		{
+			if (Root->pLeft == nullptr)Root->pLeft = new Element(Root->Data);
+			else insert(Root->Data, Root->pLeft);
+			Root->Data = minValue(Root->pRight);
+			erase(minValue(Root->pRight), Root->pRight);
+		}
+		balance(Root->pLeft);
+		balance(Root->pRight);
+		balance(Root);
 	}
 	void print(Element* Root)const
 	{
@@ -264,7 +302,7 @@ template<typename T>void measure(const char msg[], T(Tree::*function)()const, co
 //#define PREFORMANCE_CHECK_1
 //#define UNIQUE_TREE_CHECK
 //#define ERASE_CHECK
-#define DEPTH_CHECK
+//#define DEPTH_CHECK
 
 void main()
 {
@@ -352,14 +390,14 @@ void main()
 #endif // ERASE_CHECK
 
 #ifdef DEPTH_CHECK
-	Tree tree = 
-	{ 
-							50, 
+	Tree tree =
+	{
+							50,
 
 				25,						75,
 
 			16,		32,				64,		90 ,
-		15,										91,
+		15,		17,31,33,		58,		85,		91,
 													98
 	};
 	tree.print();
@@ -370,4 +408,8 @@ void main()
 	//tree.depth_print(depth);
 #endif // DEPTH_CHECK
 
+	Tree tree = { 55, 34, 21, 13, 8, 5, 3 };
+	tree.tree_print();
+	tree.balance();
+	tree.tree_print();
 }
