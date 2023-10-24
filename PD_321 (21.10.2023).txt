@@ -2,10 +2,6 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
-1. ƒобавить значение в список по заданному индексу;
-2. ”далить значение из списка по заданному индексу;
-
-DONE:
 1. ƒобавить значение в вектор по заданному индексу;
 2. ”далить значение из вектора по заданному индексу;
 
