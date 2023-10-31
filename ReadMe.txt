@@ -2,6 +2,10 @@ https://github.com/okovtun/PD_321.git
 https://www.youtube.com/watch?v=DJgLqTRrUiE&list=PLeqyOOqxeiINqPSzLEh9Oq9eIjtKj_rHv
 
 TODO:
+1. Реализовать класс 'Engine';
+2. Реализовать класс 'Car';
+
+DONE:
 1. Добавить значение в список по заданному индексу;
 2. Удалить значение из списка по заданному индексу;
 3. https://github.com/okovtun/PD_321/blob/master/STL/GAI%20DZ_PS_C%2B%2B_nedelya_09.pdf;
