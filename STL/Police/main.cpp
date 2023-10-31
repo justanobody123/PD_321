@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include<Windows.h>
 #include<iostream>
 #include<fstream>
 #include<conio.h>
@@ -114,6 +115,13 @@ public:
 		set_place(place);
 		set_time(time.c_str());
 	}
+	Crime(int id, const std::string& place, std::time_t time)
+	{
+		set_id(id);
+		set_place(place);
+		set_time(time);
+	}
+
 	~Crime() {}
 };
 std::ostream& operator<<(std::ostream& os, const Crime& obj)
@@ -223,24 +231,25 @@ void main()
 	char key;
 	do
 	{
-		key = _getch();
+		system("CLS");
 		cout << "1. Вывод всей базы;" << endl;
 		cout << "2. Вывод информации по номеру;" << endl;
 		cout << "3. Вывод информации по диапазону номеров;" << endl;
 		cout << "4. Добавить нарушение;" << endl;
 		cout << "5. Загрузить базу из файла;" << endl;
 		cout << "6. Сохранить базу в файл;" << endl;
+		key = _getch();
 		switch (key)
 		{
-		case 1: print(base); break;
-		case 2:
+		case '1': print(base); break;
+		case '2':
 		{
 			LicencePlate plate;
 			cout << "Введите номер: "; cin >> plate;
 			print(base, plate);
 		}
 			break;
-		case 3:
+		case '3':
 		{
 			LicencePlate start_plate;
 			LicencePlate end_plate;
@@ -249,14 +258,31 @@ void main()
 			print(base, start_plate, end_plate);
 		}
 			break;
-		case 4:
+		case '4':
 		{
 			LicencePlate plate;
-			Crime crime;
+			std::string place;
+			int id;
 			cout << "Введите номер: "; cin >> plate;
-			cout << "Введите нарушение: "; cin >> crime;
+			cout << "Введите место происшествия: "; 
+			//cin >> place;
+			cin.clear();
+			cin.ignore();
+			SetConsoleCP(1251);
+			std::getline(cin, place);
+			SetConsoleCP(866);
+			cout << "Выберите нарушение:\n"; 
+			for (std::pair<int, std::string> i : VIOLATIONS)cout << i.first << ". " << i.second << endl;
+			cin >> id;
+			//std::time_t now;
+			//std::localtime(&now);
+			Crime crime(id, place, time(NULL));
+			base[plate].push_back(crime);
+			cout << plate << ":\n";
+			for (Crime i : base[plate])cout << i << ";\n";
 		}
 		}
+		system("PAUSE");
 	} while (key != Escape);
 
 	//system("PAUSE");
