@@ -7,6 +7,9 @@ using std::endl;
 
 #define tab "\t"
 
+#define DEBUG
+#define delimeter "\n----------------------------------------------\n"
+
 class Element
 {
 	int Data;
@@ -18,6 +21,7 @@ public:
 		count++;
 #ifdef DEBUG
 		cout << "EConstructor:\t" << this << endl;
+		cout << delimeter;
 #endif // DEBUG
 	}
 	~Element()
@@ -29,6 +33,7 @@ public:
 	}
 	friend class ForwardList;
 	friend class Iterator;
+	friend class Stack;
 };
 
 int Element::count = 0;	//определение статической переменной
@@ -87,6 +92,7 @@ public:
 class ForwardList
 {
 	//Forward - односвязный, однонаправленный
+protected:
 	Element* Head;
 	unsigned int size;
 public:
@@ -221,12 +227,14 @@ public:
 	}
 
 	//					Removing elements:
-	void pop_front()
+	int pop_front()
 	{
 		Element* Erased = Head;	//1) Запоминаем адрес удаляемого элемента
+		int Data = Erased->Data;
 		Head = Head->pNext;	//2) Исключаем удаляемый элемент из списка
 		delete Erased;	//3) Удаляем элемент из памяти
 		size--;
+		return Data;
 	}
 	void pop_back()
 	{
@@ -293,12 +301,38 @@ ForwardList operator+(const ForwardList& left, const ForwardList& right)
 	return result;
 }
 
+class Stack : protected ForwardList
+{
+public:
+	void push(int data)
+	{
+		push_front(data);
+	}
+	int pop()
+	{
+		return pop_front();
+	}
+	int peek()
+	{
+		return Head->Data;
+	}
+	int height() const
+	{
+		return ForwardList::size;
+	}
+	void print()
+	{
+		ForwardList::print();
+	}
+	
+};
 //#define BASE_CHECK
 //#define INSERT_CHECK
 //#define RANGE_BASED_FOR_ARRAY
 //#define RANGE_BASED_FOR_LIST
 //#define OPERATOR_PLUS_CHECK
 #define FORWARD_LIST_PREFORMANCE_TEST
+
 
 void main()
 {
@@ -384,6 +418,7 @@ void main()
 	list2.print();
 #endif // OPERATOR_PLUS_CHECK
 
+#if PERFORMANCE_TEST
 	int n;
 	cout << "Введите размер списка: "; cin >> n;
 	ForwardList list;
@@ -397,11 +432,31 @@ void main()
 	cout << endl;
 	//for (int i : list)cout << i << tab; cout << endl;
 	clock_t end = clock();
-	cout << "Data loaded for " << double(end-start)/CLOCKS_PER_SEC << endl;
+	cout << "Data loaded for " << double(end - start) / CLOCKS_PER_SEC << endl;
 	cout << "Copying list...." << endl;
 	start = clock();
 	ForwardList list2 = list;
 	//for (int i : list2)cout << i << tab; cout << endl;
 	end = clock();
 	cout << "List copied for " << double(end - start) / CLOCKS_PER_SEC << endl;
+#endif // PERFORMANCE_TEST
+	Stack stack;
+	int n;
+	cout << "Введите размер списка: ";
+	cin >> n;
+	for (size_t i = 0; i < n; i++)
+	{
+		stack.push(rand() % 100);
+	}
+	//stack.print();
+	/*for (size_t i = 0; i < stack.height(); i++)
+	{
+		cout << stack.pop();
+	}*/
+	cout << delimeter;
+	while (stack.height())
+	{
+		cout << stack.pop() << "\t";
+		cout << delimeter;
+	}
 }
